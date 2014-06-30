@@ -15,15 +15,15 @@ namespace BrainFry
 			CallStack = new Stack<int>();
 		}
 
-		public byte[] Memory { get; set; }
-		public int MemoryPointer { get; set; }
+		public byte[] Memory;
+		public int MemoryPointer;
 
-		public int CommandPointer { get; set; }
-		public IList<ICommand> Commands { get; set; }
-		public int[] ProcedurePointers { get; set; }
+		public int CommandPointer;
+		public IList<ICommand> Commands;
+		public int[] ProcedurePointers;
 
-		public Stack<int> CallStack { get; set; }
-		public Stack<int> LoopStack { get; set; }
+		public Stack<int> CallStack;
+		public Stack<int> LoopStack;
 
 		public byte CurrentMemory
 		{
