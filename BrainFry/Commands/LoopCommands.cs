@@ -12,24 +12,26 @@ namespace BrainFry.Commands
 			}
 			else // If current memory false (0) => skip block
 			{
+				// Since we start at ourselves, this will increment to 1 immediately
 				var depth = 0;
-				while (true)
+				for (; context.CommandPointer < context.Commands.Count; context.CommandPointer++)
 				{
-					context.CommandPointer++;
 					var commandType = context.CurrentCommand.GetType();
 
-					if (commandType == typeof (LoopCloseCommand))
-					{
-						if (depth == 0) // This is our stop!
-							break;
-
-						depth--; // Nested loop close
-					}
-					else if (commandType == typeof (LoopOpenCommand))
+					if (commandType == typeof(LoopOpenCommand))
 					{
 						depth++; // Nested loop open
 					}
+					else if (commandType == typeof(LoopCloseCommand))
+					{
+						if (depth == 1) // This is our stop!
+							return;
+
+						depth--; // Nested loop close
+					}
 				}
+
+				throw new InvalidOperationException("Loop open command lacks close command!");
 			}
 		}
 	}

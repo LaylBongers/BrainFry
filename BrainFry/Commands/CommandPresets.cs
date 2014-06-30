@@ -16,8 +16,9 @@ namespace BrainFry.Commands
 			{
 				return new Dictionary<char, ICommand>
 				{
-					{'(', new IncrementCommand()},
-					{')', new DecrementCommand()},
+					{'(', new ProcedureDefineStartCommand()},
+					{')', new ProcedureDefineEndCommand()},
+					{':', new ProcedureCallCommand()}
 				};
 			}
 		}
