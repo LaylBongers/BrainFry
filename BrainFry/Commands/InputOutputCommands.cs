@@ -6,7 +6,9 @@ namespace BrainFry.Commands
 	{
 		public void Execute(ExecutionContext context)
 		{
-			context.CurrentMemory = (byte)Console.ReadKey().KeyChar;
+			// Enter for some reason gives a \r, which needs to be a \n
+			var ch = Console.ReadKey(false).KeyChar;
+			context.CurrentMemory = (byte)(ch == '\r' ? '\n' : ch);
 		}
 	}
 
