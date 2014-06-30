@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" DefaultTargets="Travis" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Travis" DependsOnTargets="Build;Test" />
+  <Target Name="Build">
+    <MSBuild Projects="BrainFry.sln" Properties="Configuration=Release;Platform=Any CPU" />
+  </Target>
+</Project>
