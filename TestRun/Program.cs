@@ -6,10 +6,11 @@ namespace TestRun
 {
 	internal static class Program
 	{
-		// Complex Hello World that tends to crash interpreters
+		// Complex Hello World that tends to crash interpreters (with a procedure thrown in for good measure)
 		private const string InputCode =
+			"(<+++++++++++++++.>>.+++.------.--------.>>+.>++++.)" +
 			">++++++++[<+++++++++>-]<.>>+>+>++>[-]+<[>[->+<<++++>]<<]>.+++++++..+++.>" +
-			">+++++++.<<<[[-]<[-]>]<+++++++++++++++.>>.+++.------.--------.>>+.>++++.";
+			">+++++++.<<<[[-]<[-]>]:";
 
 		private static void Main()
 		{

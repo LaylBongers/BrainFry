@@ -12,7 +12,7 @@ namespace BrainFry.Commands
 			}
 			else // If current memory false (0) => skip block
 			{
-				// Since we start at ourselves, this will increment to 1 immediately
+				context.CommandPointer++;
 				var depth = 0;
 				for (; context.CommandPointer < context.Commands.Count; context.CommandPointer++)
 				{
@@ -24,7 +24,7 @@ namespace BrainFry.Commands
 					}
 					else if (commandType == typeof(LoopCloseCommand))
 					{
-						if (depth == 1) // This is our stop!
+						if (depth == 0) // This is our stop!
 							return;
 
 						depth--; // Nested loop close

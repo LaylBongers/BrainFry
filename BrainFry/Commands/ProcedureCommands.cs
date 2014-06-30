@@ -10,6 +10,30 @@ namespace BrainFry.Commands
 	{
 		public void Execute(ExecutionContext context)
 		{
+			// This only gets encountered if we create a new procedure
+			context.ProcedurePointers[context.CurrentMemory] = context.CommandPointer;
+
+			// Skip till end of procedure definition
+			context.CommandPointer++;
+			var depth = 0;
+			for (; context.CommandPointer < context.Commands.Count; context.CommandPointer++)
+			{
+				var commandType = context.CurrentCommand.GetType();
+
+				if (commandType == typeof(ProcedureDefineStartCommand))
+				{
+					depth++; // Nested loop open
+				}
+				else if (commandType == typeof(ProcedureDefineEndCommand))
+				{
+					if (depth == 0) // This is our stop!
+						return;
+
+					depth--; // Nested loop close
+				}
+			}
+
+			throw new InvalidOperationException("Loop open command lacks close command!");
 		}
 	}
 
@@ -17,6 +41,8 @@ namespace BrainFry.Commands
 	{
 		public void Execute(ExecutionContext context)
 		{
+			// This only gets encountered if we're in the procedure
+			context.CommandPointer = context.CallStack.Pop();
 		}
 	}
 
@@ -24,6 +50,8 @@ namespace BrainFry.Commands
 	{
 		public void Execute(ExecutionContext context)
 		{
+			context.CallStack.Push(context.CommandPointer);
+			context.CommandPointer = context.ProcedurePointers[context.CurrentMemory];
 		}
 	}
 }
