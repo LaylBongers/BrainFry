@@ -4,8 +4,17 @@
 	{
 		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
-			//execution.CallStack.Push(execution.CommandPointer);
-			//execution.CommandPointer = execution.ProcedurePointers[execution.CurrentMemory];
+			var exeThread = new ExecutionThread(
+				execution,
+				thread.MemoryPointer,
+				execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]] + 1);
+		}
+	}
+
+	public sealed class JoinThreadCommand : ICommand
+	{
+		public void Execute(ExecutionContext execution, ThreadContext thread)
+		{
 		}
 	}
 }

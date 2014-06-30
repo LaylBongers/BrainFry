@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BrainFry.Commands
 {
@@ -20,11 +16,11 @@ namespace BrainFry.Commands
 			{
 				var commandType = execution.Commands[thread.CommandPointer].GetType();
 
-				if (commandType == typeof(ProcedureDefineStartCommand))
+				if (commandType == typeof (ProcedureDefineStartCommand))
 				{
 					depth++; // Nested loop open
 				}
-				else if (commandType == typeof(ProcedureDefineEndCommand))
+				else if (commandType == typeof (ProcedureDefineEndCommand))
 				{
 					if (depth == 0) // This is our stop!
 						return;
@@ -42,7 +38,9 @@ namespace BrainFry.Commands
 		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
 			// This only gets encountered if we're in the procedure
-			thread.CommandPointer = thread.CallStack.Pop();
+
+			// If the callstack is empty we're in a thread (probably) so let's just halt execution by putting the pointer at the end
+			thread.CommandPointer = thread.CallStack.Count == 0 ? execution.Commands.Count : thread.CallStack.Pop();
 		}
 	}
 

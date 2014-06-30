@@ -23,6 +23,18 @@ namespace BrainFry.Commands
 			}
 		}
 
+		public static IDictionary<char, ICommand> TbrainExtension
+		{
+			get
+			{
+				return new Dictionary<char, ICommand>
+				{
+					{';', new ProcedureCallThreadedCommand()},
+					{'\\', new JoinThreadCommand()}
+				};
+			}
+		}
+
 		public static IDictionary<char, ICommand> Brainfuck
 		{
 			get
@@ -46,12 +58,17 @@ namespace BrainFry.Commands
 
 		public static IDictionary<char, ICommand> Default
 		{
-			get { return Merge(Brainfuck, PbrainExtension); }
+			get { return Merge(Brainfuck, PbrainExtension, TbrainExtension); }
 		}
 
 		public static IDictionary<char, ICommand> Pbrain
 		{
 			get { return Merge(Brainfuck, PbrainExtension); }
+		}
+
+		public static IDictionary<char, ICommand> Tbrain
+		{
+			get { return Merge(Brainfuck, PbrainExtension, TbrainExtension); }
 		}
 	}
 }
