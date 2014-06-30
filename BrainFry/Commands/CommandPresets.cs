@@ -23,16 +23,6 @@ namespace BrainFry.Commands
 			}
 		}
 
-		public static IDictionary<char, ICommand> BrainforkExtension
-		{
-			get
-			{
-				return new Dictionary<char, ICommand>
-				{
-				};
-			}
-		}
-
 		public static IDictionary<char, ICommand> Brainfuck
 		{
 			get
@@ -56,17 +46,12 @@ namespace BrainFry.Commands
 
 		public static IDictionary<char, ICommand> Default
 		{
-			get { return Merge(Brainfuck, PbrainExtension, BrainforkExtension); }
+			get { return Merge(Brainfuck, PbrainExtension); }
 		}
 
 		public static IDictionary<char, ICommand> Pbrain
 		{
 			get { return Merge(Brainfuck, PbrainExtension); }
-		}
-
-		public static IDictionary<char, ICommand> Brainfork
-		{
-			get { return Merge(Brainfuck, BrainforkExtension); }
 		}
 	}
 }
