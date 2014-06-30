@@ -4,19 +4,19 @@ namespace BrainFry.Commands
 {
 	public sealed class LoopOpenCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
-			if (context.CurrentMemory != 0) // If current memory true (!=0) => execute block
+			if (execution.Memory[thread.MemoryPointer] != 0) // If current memory true (!=0) => execute block
 			{
-				context.LoopStack.Push(context.CommandPointer);
+				thread.LoopStack.Push(thread.CommandPointer);
 			}
 			else // If current memory false (0) => skip block
 			{
-				context.CommandPointer++;
+				thread.CommandPointer++;
 				var depth = 0;
-				for (; context.CommandPointer < context.Commands.Count; context.CommandPointer++)
+				for (; thread.CommandPointer < execution.Commands.Count; thread.CommandPointer++)
 				{
-					var commandType = context.CurrentCommand.GetType();
+					var commandType = execution.Commands[thread.CommandPointer].GetType();
 
 					if (commandType == typeof(LoopOpenCommand))
 					{
@@ -38,10 +38,10 @@ namespace BrainFry.Commands
 
 	public sealed class LoopCloseCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
 			// 1 before the target because the command pointer gets incremented at the end
-			context.CommandPointer = context.LoopStack.Pop() - 1;
+			thread.CommandPointer = thread.LoopStack.Pop() - 1;
 		}
 	}
 }

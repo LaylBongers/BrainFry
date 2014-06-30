@@ -8,17 +8,17 @@ namespace BrainFry.Commands
 {
 	public sealed class ProcedureDefineStartCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
 			// This only gets encountered if we create a new procedure
-			context.ProcedurePointers[context.CurrentMemory] = context.CommandPointer;
+			execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]] = thread.CommandPointer;
 
 			// Skip till end of procedure definition
-			context.CommandPointer++;
+			thread.CommandPointer++;
 			var depth = 0;
-			for (; context.CommandPointer < context.Commands.Count; context.CommandPointer++)
+			for (; thread.CommandPointer < execution.Commands.Count; thread.CommandPointer++)
 			{
-				var commandType = context.CurrentCommand.GetType();
+				var commandType = execution.Commands[thread.CommandPointer].GetType();
 
 				if (commandType == typeof(ProcedureDefineStartCommand))
 				{
@@ -33,25 +33,25 @@ namespace BrainFry.Commands
 				}
 			}
 
-			throw new InvalidOperationException("Loop open command lacks close command!");
+			throw new InvalidOperationException("Procedure starts command lacks end command!");
 		}
 	}
 
 	public sealed class ProcedureDefineEndCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
 			// This only gets encountered if we're in the procedure
-			context.CommandPointer = context.CallStack.Pop();
+			thread.CommandPointer = thread.CallStack.Pop();
 		}
 	}
 
 	public sealed class ProcedureCallCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
-			context.CallStack.Push(context.CommandPointer);
-			context.CommandPointer = context.ProcedurePointers[context.CurrentMemory];
+			thread.CallStack.Push(thread.CommandPointer);
+			thread.CommandPointer = execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]];
 		}
 	}
 }

@@ -2,6 +2,6 @@
 {
 	public interface ICommand
 	{
-		void Execute(ExecutionContext context);
+		void Execute(ExecutionContext execution, ThreadContext thread);
 	}
 }

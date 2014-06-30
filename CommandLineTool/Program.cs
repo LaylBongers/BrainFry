@@ -29,6 +29,11 @@ namespace CommandLineTool
 			// Run it
 			var program = compiler.Compile(code);
 			program.Run();
+
+#if DEBUG
+			Console.Write("\nFinished executing, press any key to exit...");
+			Console.ReadKey();
+#endif
 		}
 	}
 }

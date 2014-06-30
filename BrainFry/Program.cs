@@ -13,12 +13,9 @@ namespace BrainFry
 
 		public void Run()
 		{
-			for (var context = new ExecutionContext(_commands);
-				context.CommandPointer < _commands.Count;
-				context.CommandPointer++)
-			{
-				_commands[context.CommandPointer].Execute(context);
-			}
+			var context = new ExecutionContext(_commands);
+			var thread = new ExecutionThread(context, 0, 0);
+			thread.Join();
 		}
 	}
 }
