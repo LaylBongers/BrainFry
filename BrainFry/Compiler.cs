@@ -5,14 +5,11 @@ namespace BrainFry
 {
 	public sealed class Compiler
 	{
-		private readonly Dictionary<char, ICommand> _commands = new Dictionary<char, ICommand>();
+		private readonly IDictionary<char, ICommand> _commands;
 
-		public Compiler(IEnumerable<ICommand> commands)
+		public Compiler(IDictionary<char, ICommand> commands)
 		{
-			foreach (var command in commands)
-			{
-				_commands.Add(command.Char, command);
-			}
+			_commands = commands;
 		}
 
 		public Program Compile(string code)

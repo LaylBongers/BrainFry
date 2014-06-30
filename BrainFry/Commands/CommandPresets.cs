@@ -4,21 +4,21 @@ namespace BrainFry.Commands
 {
 	public static class CommandPresets
 	{
-		public static IEnumerable<ICommand> Default
+		public static IDictionary<char, ICommand> Default
 		{
-			get { return new List<ICommand>
+			get { return new Dictionary<char, ICommand>
 			{
-				new DecrementCommand(),
-				new IncrementCommand(),
+				{'+', new IncrementCommand()},
+				{'-', new DecrementCommand()},
 
-				new InputCommand(),
-				new OutputCommand(),
+				{',', new InputCommand()},
+				{'.', new OutputCommand()},
 				
-				new PointerDecrementCommand(),
-				new PointerIncrementCommand(),
-
-				new LoopOpenCommand(),
-				new LoopCloseCommand()
+				{'>', new PointerIncrementCommand()},
+				{'<', new PointerDecrementCommand()},
+				
+				{'[', new LoopOpenCommand()},
+				{']', new LoopCloseCommand()}
 			};}
 		}
 	}

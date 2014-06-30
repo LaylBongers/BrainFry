@@ -4,11 +4,6 @@ namespace BrainFry.Commands
 {
 	public sealed class LoopOpenCommand : ICommand
 	{
-		public char Char
-		{
-			get { return '['; }
-		}
-
 		public void Execute(ExecutionContext context)
 		{
 			if (context.CurrentMemory != 0) // If current memory true (!=0) => execute block
@@ -36,6 +31,15 @@ namespace BrainFry.Commands
 					}
 				}
 			}
+		}
+	}
+
+	public sealed class LoopCloseCommand : ICommand
+	{
+		public void Execute(ExecutionContext context)
+		{
+			// 1 before the target because the command pointer gets incremented at the end
+			context.CommandPointer = context.LoopStack.Pop() - 1;
 		}
 	}
 }
