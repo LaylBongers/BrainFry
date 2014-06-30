@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Commands\CommandPresets.cs" />
     <Compile Include="Commands\LoopCommands.cs" />
+    <Compile Include="Commands\ProcedureCommands.cs" />
     <Compile Include="Commands\ValueCommands.cs" />
     <Compile Include="Commands\PointerCommands.cs" />
     <Compile Include="Compiler.cs" />
