@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainFry", "BrainFry\BrainF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandLineTool", "CommandLineTool\CommandLineTool.csproj", "{FA4E3719-EC92-4A99-8280-D7A5E57BB3A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFramework", "WebFramework\WebFramework.csproj", "{12FD9B0B-F917-44DE-856C-ECAAEDA596EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFrameworkConsole", "WebFrameworkConsole\WebFrameworkConsole.csproj", "{7471C298-6A0A-47C3-9C50-40445FE8BFBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FA4E3719-EC92-4A99-8280-D7A5E57BB3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA4E3719-EC92-4A99-8280-D7A5E57BB3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA4E3719-EC92-4A99-8280-D7A5E57BB3A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12FD9B0B-F917-44DE-856C-ECAAEDA596EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12FD9B0B-F917-44DE-856C-ECAAEDA596EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12FD9B0B-F917-44DE-856C-ECAAEDA596EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12FD9B0B-F917-44DE-856C-ECAAEDA596EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7471C298-6A0A-47C3-9C50-40445FE8BFBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7471C298-6A0A-47C3-9C50-40445FE8BFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7471C298-6A0A-47C3-9C50-40445FE8BFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7471C298-6A0A-47C3-9C50-40445FE8BFBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
