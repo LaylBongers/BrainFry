@@ -7,7 +7,8 @@
 			var exeThread = new ExecutionThread(
 				execution,
 				thread.MemoryPointer,
-				execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]] + 1);
+				execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]] + 1,
+				execution.Memory[thread.MemoryPointer]);
 		}
 	}
 
@@ -15,6 +16,7 @@
 	{
 		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
+			execution.JoinThreads(execution.Memory[thread.MemoryPointer]);
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace BrainFry
 		public int MemoryPointer;
 		public int CommandPointer;
 
-		public Stack<int> CallStack;
-		public Stack<int> LoopStack;
+		public readonly Stack<int> CallStack;
+		public readonly Stack<int> LoopStack;
 	}
 }
