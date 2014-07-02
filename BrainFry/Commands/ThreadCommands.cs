@@ -2,21 +2,21 @@
 {
 	public sealed class ProcedureCallThreadedCommand : ICommand
 	{
-		public void Execute(ExecutionContext execution, ThreadContext thread)
+		public void Execute(ThreadContext thread)
 		{
 			var exeThread = new ExecutionThread(
-				execution,
+				thread.Execution,
 				thread.MemoryPointer,
-				execution.ProcedurePointers[execution.Memory[thread.MemoryPointer]] + 1,
-				execution.Memory[thread.MemoryPointer]);
+				thread.Execution.ProcedurePointers[thread.CurrentMemory] + 1,
+				thread.CurrentMemory);
 		}
 	}
 
 	public sealed class JoinThreadCommand : ICommand
 	{
-		public void Execute(ExecutionContext execution, ThreadContext thread)
+		public void Execute(ThreadContext thread)
 		{
-			execution.JoinThreads(execution.Memory[thread.MemoryPointer]);
+			thread.Execution.JoinThreads(thread.CurrentMemory);
 		}
 	}
 }

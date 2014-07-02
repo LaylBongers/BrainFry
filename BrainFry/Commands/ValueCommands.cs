@@ -2,17 +2,17 @@
 {
 	public sealed class IncrementCommand : ICommand
 	{
-		public void Execute(ExecutionContext execution, ThreadContext thread)
+		public void Execute(ThreadContext thread)
 		{
-			execution.Memory[thread.MemoryPointer]++;
+			thread.CurrentMemory++;
 		}
 	}
 
 	public sealed class DecrementCommand : ICommand
 	{
-		public void Execute(ExecutionContext execution, ThreadContext thread)
+		public void Execute(ThreadContext thread)
 		{
-			execution.Memory[thread.MemoryPointer]--;
+			thread.CurrentMemory--;
 		}
 	}
 }
