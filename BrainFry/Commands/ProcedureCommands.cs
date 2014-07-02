@@ -18,7 +18,7 @@ namespace BrainFry.Commands
 
 				if (commandType == typeof (ProcedureDefineStartCommand))
 				{
-					depth++; // Nested loop open
+					depth++; // Nested procedure create open
 				}
 				else if (commandType == typeof (ProcedureDefineEndCommand))
 				{
@@ -40,7 +40,9 @@ namespace BrainFry.Commands
 			// This only gets encountered if we're in the procedure
 
 			// If the callstack is empty we're in a thread (probably) so let's just halt execution by putting the pointer at the end
-			thread.CommandPointer = thread.CallStack.Count == 0 ? execution.Commands.Count : thread.CallStack.Pop();
+			thread.CommandPointer = thread.CallStack.Count == 0
+				? execution.Commands.Count
+				: thread.CallStack.Pop();
 		}
 	}
 

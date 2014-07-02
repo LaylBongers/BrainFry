@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandPresets.cs" />
+    <Compile Include="Commands\DebugCommands.cs" />
     <Compile Include="Commands\LoopCommands.cs" />
     <Compile Include="Commands\ThreadCommands.cs" />
     <Compile Include="Commands\ProcedureCommands.cs" />

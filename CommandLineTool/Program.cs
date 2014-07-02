@@ -20,7 +20,7 @@ namespace CommandLineTool
 			}
 
 			// Set up the compiler
-			var compiler = new Compiler(CommandPresets.Default);
+			var compiler = new Compiler(CommandPresets.BrainFry);
 
 			// Parse the rest of the parameters
 			var restArg = string.Join(" ", args.Skip(1));
