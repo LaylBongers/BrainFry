@@ -3,7 +3,7 @@ BrainFry is an open source Brainfuck interpreter/library written in C#.
 
 ## Building ##
 1. Download the version of BrainFry you want to build.
-2. Build the engine from Visual Studio 2013.
+2. Build the BrainFry from Visual Studio 2013.
 
 ## License ##
 <div align="center">
