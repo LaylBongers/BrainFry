@@ -4,42 +4,44 @@ namespace BrainFry.Commands
 {
 	public sealed class LoopOpenCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
-			if (context.CurrentMemory != 0) // If current memory true (!=0) => execute block
+			if (execution.Memory[thread.MemoryPointer] != 0) // If current memory true (!=0) => execute block
 			{
-				context.LoopStack.Push(context.CommandPointer);
+				thread.LoopStack.Push(thread.CommandPointer);
 			}
 			else // If current memory false (0) => skip block
 			{
+				thread.CommandPointer++;
 				var depth = 0;
-				while (true)
+				for (; thread.CommandPointer < execution.Commands.Count; thread.CommandPointer++)
 				{
-					context.CommandPointer++;
-					var commandType = context.CurrentCommand.GetType();
+					var commandType = execution.Commands[thread.CommandPointer].GetType();
 
-					if (commandType == typeof (LoopCloseCommand))
-					{
-						if (depth == 0) // This is our stop!
-							break;
-
-						depth--; // Nested loop close
-					}
-					else if (commandType == typeof (LoopOpenCommand))
+					if (commandType == typeof(LoopOpenCommand))
 					{
 						depth++; // Nested loop open
 					}
+					else if (commandType == typeof(LoopCloseCommand))
+					{
+						if (depth == 0) // This is our stop!
+							return;
+
+						depth--; // Nested loop close
+					}
 				}
+
+				throw new InvalidOperationException("Loop open command lacks close command!");
 			}
 		}
 	}
 
 	public sealed class LoopCloseCommand : ICommand
 	{
-		public void Execute(ExecutionContext context)
+		public void Execute(ExecutionContext execution, ThreadContext thread)
 		{
 			// 1 before the target because the command pointer gets incremented at the end
-			context.CommandPointer = context.LoopStack.Pop() - 1;
+			thread.CommandPointer = thread.LoopStack.Pop() - 1;
 		}
 	}
 }
