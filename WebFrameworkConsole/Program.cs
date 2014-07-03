@@ -2,7 +2,7 @@
 using System.Reflection;
 using WebFramework;
 
-namespace WebFrameworkDebug
+namespace WebFrameworkConsole
 {
 	internal static class Program
 	{

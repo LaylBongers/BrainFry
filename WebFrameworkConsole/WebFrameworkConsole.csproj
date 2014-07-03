@@ -7,8 +7,8 @@
     <ProjectGuid>{7471C298-6A0A-47C3-9C50-40445FE8BFBC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebFrameworkDebug</RootNamespace>
-    <AssemblyName>WebFrameworkDebug</AssemblyName>
+    <RootNamespace>WebFrameworkConsole</RootNamespace>
+    <AssemblyName>WebFrameworkConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
